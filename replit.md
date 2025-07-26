@@ -40,15 +40,16 @@ Preferred communication style: Simple, everyday language.
 - **User Management**: Automatic user creation/updates from OAuth claims
 
 ### Course Management
-- **Categories**: 7 comprehensive learning paths:
-  1. Hosting & Installation (4 lessons) - Domain setup, hosting selection, WordPress installation
-  2. WordPress Fundamentals (4 lessons) - Dashboard mastery, security, themes, plugins
-  3. Content & Structure (4 lessons) - Custom post types, ACF, user roles, Gutenberg blocks
-  4. Theme Development (5 lessons) - Theme structure, template hierarchy, Loop, Customizer, FSE
-  5. Plugin Development (5 lessons) - Plugin basics, hooks, shortcodes, admin pages, AJAX
-  6. API & Headless WordPress (4 lessons) - REST API, custom endpoints, headless, Gutenberg blocks
-  7. Performance & SEO (2 lessons) - Optimization, migration, maintenance
-- **Lessons**: 28 comprehensive lessons with detailed content, practice exercises, and video placeholders
+- **Categories**: 8 comprehensive learning paths:
+  1. WordPress Foundations (5 lessons) - Introduction, local development, dashboard mastery, content creation, media management
+  2. Hosting & Installation (4 lessons) - Domain setup, hosting selection, WordPress installation
+  3. WordPress Fundamentals (4 lessons) - Dashboard mastery, security, themes, plugins
+  4. Content & Structure (4 lessons) - Custom post types, ACF, user roles, Gutenberg blocks
+  5. Theme Development (5 lessons) - Theme structure, template hierarchy, Loop, Customizer, FSE
+  6. Plugin Development (5 lessons) - Plugin basics, hooks, shortcodes, admin pages, AJAX
+  7. API & Headless WordPress (4 lessons) - REST API, custom endpoints, headless, Gutenberg blocks
+  8. Performance & SEO (2 lessons) - Optimization, migration, maintenance
+- **Lessons**: 33 comprehensive lessons with detailed content, practice exercises, and video placeholders
 - **Progress Tracking**: User completion status and progress percentages with visual indicators
 - **Achievement System**: Certificates and milestone tracking with gamification elements
 

@@ -56,6 +56,12 @@ export default function Landing() {
             <Button 
               size="lg" 
               variant="outline" 
+              onClick={() => {
+                const outlineSection = document.getElementById('course-outline');
+                if (outlineSection) {
+                  outlineSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
               className="text-lg px-8 py-3 border-primary text-primary hover:bg-primary hover:text-white"
             >
               View Course Outline
@@ -103,12 +109,21 @@ export default function Landing() {
         </div>
 
         {/* Course Modules */}
-        <div className="mt-20">
+        <div id="course-outline" className="mt-20">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             What You'll Learn
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center mb-4">
+                <i className="fas fa-play-circle text-violet-600"></i>
+              </div>
+              <h3 className="font-semibold mb-2">WordPress Foundations</h3>
+              <p className="text-sm text-gray-600">Learn basics, local setup, and essential concepts</p>
+              <div className="text-xs text-violet-600 mt-2">5 lessons</div>
+            </div>
+
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
               <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                 <i className="fas fa-server text-blue-600"></i>

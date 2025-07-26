@@ -165,8 +165,9 @@ export default function Dashboard() {
         {/* Lesson Categories */}
         <div className="mb-8">
           <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-            <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8">
+            <TabsList className="grid w-full grid-cols-5 lg:grid-cols-9">
               <TabsTrigger value="all">All</TabsTrigger>
+              <TabsTrigger value="foundations">Foundations</TabsTrigger>
               <TabsTrigger value="hosting">Hosting</TabsTrigger>
               <TabsTrigger value="fundamentals">Fundamentals</TabsTrigger>
               <TabsTrigger value="content">Content</TabsTrigger>
