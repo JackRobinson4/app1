@@ -1,0 +1,174 @@
+✅ BEGINNER FOUNDATIONS (1–7)
+Intro to WordPress
+
+What is WordPress?
+
+WordPress.com vs WordPress.org
+
+Use cases and market share
+
+Setting Up a Local Development Environment
+
+Using XAMPP, MAMP, or LocalWP
+
+Installing WordPress locally
+
+WordPress Dashboard Overview
+
+Admin menu, settings, content types
+
+User roles and capabilities
+
+Creating Posts and Pages
+
+Gutenberg editor walkthrough
+
+Categories vs tags
+
+Managing Media
+
+Uploading, editing, optimizing images
+
+Media Library tips
+
+Themes and Appearance
+
+Installing, customizing, and switching themes
+
+Widgets and menus
+
+Installing and Managing Plugins
+
+Plugin installation process
+
+Must-have plugin examples
+
+🔧 THEME DEVELOPMENT (8–13)
+Intro to WordPress Theme Development
+
+Folder structure: style.css, functions.php, etc.
+
+Creating a basic custom theme
+
+Template Hierarchy
+
+index.php, single.php, archive.php, etc.
+
+How WordPress chooses templates
+
+Creating Template Files
+
+Header, footer, sidebar includes
+
+Using get_template_part()
+
+The Loop and WP_Query
+
+Customizing post queries
+
+Displaying dynamic content
+
+Using Custom Fields (ACF or native)
+
+Creating and using metadata
+
+Practical examples (e.g. testimonials, pricing tables)
+
+Theme Customizer and Full Site Editing (FSE)
+
+Adding customizer settings
+
+Intro to block-based themes and theme.json
+
+⚙️ PLUGIN DEVELOPMENT (14–19)
+Intro to Plugin Development
+
+Basic plugin structure
+
+Writing your first simple plugin
+
+Hooks: Actions and Filters
+
+Understanding the event-driven architecture
+
+Examples of both action and filter hooks
+
+Creating Custom Shortcodes
+
+How to create and use shortcodes
+
+Attributes and dynamic output
+
+Admin Settings Pages
+
+Creating a custom plugin settings panel
+
+Using the Settings API
+
+Creating Widgets and Blocks
+
+Classic widgets vs block widgets
+
+Registering custom Gutenberg blocks
+
+Working with AJAX in WordPress
+
+Frontend-to-backend interaction
+
+Using admin-ajax.php
+
+🧩 ADVANCED CONCEPTS (20–25)
+Custom Post Types (CPTs)
+
+Registering CPTs using code
+
+Using CPT UI or other plugins
+
+Custom Taxonomies
+
+Tags vs categories vs custom taxonomies
+
+Linking CPTs with taxonomies
+
+User Roles and Capabilities
+
+Creating custom roles
+
+Managing permissions and restricting content
+
+REST API Basics
+
+Accessing WP data via REST
+
+Making custom endpoints
+
+Headless WordPress Intro
+
+Decoupled architecture overview
+
+Using WordPress with React, Vue, etc.
+
+Security and Hardening WordPress
+
+Best practices for plugins/themes
+
+Common vulnerabilities and how to prevent them
+
+🚀 DEPLOYMENT AND PERFORMANCE (26–28)
+Website Optimization and Performance
+
+Caching, image optimization, lazy load
+
+Using tools like LiteSpeed, WP Rocket
+
+Migrating WordPress Sites
+
+Using Duplicator, All-in-One WP Migration, or manually
+
+Migration between local and live servers
+
+Hosting, Backups, and Maintenance
+
+Choosing a host
+
+Setting up scheduled backups and updates
