@@ -1,0 +1,188 @@
+🟩 SECTION 1: HOSTING & INSTALLATION (1–4)
+Choosing a Hosting Provider
+
+Shared vs VPS vs Cloud hosting
+
+Best hosts for WordPress (e.g., SiteGround, Cloudways, NameHero)
+
+Domain setup, SSL, and DNS
+
+Installing WordPress on a Host
+
+cPanel installation (Softaculous/Installatron)
+
+Manual FTP + database method
+
+Staging environments
+
+Installing WordPress Locally
+
+Tools: LocalWP, XAMPP, MAMP, DevKinsta
+
+Benefits of local development
+
+Initial WordPress Setup & Security
+
+Changing default settings
+
+Disabling XML-RPC, renaming login, setting user roles
+
+Recommended security plugins (Wordfence, Sucuri)
+
+🟨 SECTION 2: ESSENTIAL WORDPRESS USAGE (5–8)
+Understanding the WordPress Dashboard
+
+Menus, settings, roles, and media management
+
+Content types: posts, pages, menus
+
+Installing & Customizing Themes
+
+Free vs premium themes
+
+Using Astra, OceanWP, GeneratePress
+
+Customizing via Customizer and Full Site Editing (FSE)
+
+Installing & Managing Plugins
+
+How plugins work
+
+Must-have plugins (SEO, caching, backup)
+
+Plugin conflicts and debugging
+
+Creating Pages, Posts, and Menus
+
+Using Gutenberg blocks
+
+Building page hierarchies and navigation
+
+🟦 SECTION 3: ADVANCED CONTENT STRUCTURE (9–12)
+Custom Post Types (CPTs)
+
+Registering CPTs via code or plugins (e.g. CPT UI)
+
+Use cases: portfolios, testimonials, products
+
+Custom Taxonomies
+
+Creating custom categories/tags
+
+Linking taxonomies with CPTs
+
+Custom Fields and Meta Boxes
+
+Using ACF (Advanced Custom Fields)
+
+Creating dynamic templates with field data
+
+User Roles, Permissions, and Membership
+
+Default roles and capabilities
+
+Creating custom roles with add_role()
+
+Restricting access with plugins or code
+
+🟥 SECTION 4: THEME DEVELOPMENT (13–17)
+Intro to WordPress Theme Development
+
+style.css, functions.php, template structure
+
+Creating a child theme
+
+The WordPress Template Hierarchy
+
+single.php, page.php, archive.php, etc.
+
+How WordPress chooses files
+
+The Loop and WP_Query
+
+Loop structure
+
+Creating custom queries with WP_Query
+
+Dynamic Template Parts
+
+Reusable parts with get_template_part()
+
+Using header.php, footer.php, sidebar.php
+
+Theme Customizer and theme.json (FSE)
+
+Adding custom options in the Customizer
+
+theme.json for block-based themes (FSE)
+
+🟧 SECTION 5: PLUGIN DEVELOPMENT (18–22)
+Creating a Simple Plugin
+
+Plugin header comment
+
+Basic activation and deactivation hooks
+
+Using Hooks: Actions and Filters
+
+WordPress event-driven architecture
+
+Creating and hooking into existing events
+
+Shortcodes and Custom Widgets
+
+Creating shortcodes with parameters
+
+Building legacy and block-based widgets
+
+Custom Admin Settings Pages
+
+Using add_menu_page() and Settings API
+
+Saving and retrieving custom plugin settings
+
+AJAX in WordPress (Frontend & Backend)
+
+Using admin-ajax.php
+
+Handling nonce, security, and JS integration
+
+🟫 SECTION 6: ADVANCED API & HEADLESS (23–26)
+Working with the WordPress REST API
+
+Reading and writing data via /wp-json/
+
+Authenticating requests (cookie, nonce, JWT)
+
+Creating Custom REST Endpoints
+
+Registering your own API routes
+
+Securing endpoints and structuring responses
+
+Headless WordPress Overview
+
+Decoupling WP from frontend
+
+Using Next.js, React, or Vue with WP as backend
+
+Gutenberg Block Development
+
+Intro to React + JSX
+
+Creating custom blocks with @wordpress/scripts
+
+🟪 SECTION 7: PERFORMANCE, SEO & DEPLOYMENT (27–28)
+Performance Optimization
+
+Caching, CDN, lazy loading, UCSS
+
+Tools: LiteSpeed Cache, WP Rocket, Asset Cleanup
+
+Site Migration & Maintenance
+
+Manual vs plugin-based migration (All-in-One WP Migration, Duplicator)
+
+Backup strategies and scheduled updates
+
+Using version control (Git) in WP projects

@@ -39,7 +39,7 @@ export const users = pgTable("users", {
 
 export const lessonStatusEnum = pgEnum("lesson_status", ["not_started", "in_progress", "completed"]);
 export const lessonTypeEnum = pgEnum("lesson_type", ["free", "premium"]);
-export const categoryEnum = pgEnum("category", ["fundamentals", "themes", "plugins", "hosting"]);
+export const categoryEnum = pgEnum("category", ["hosting", "fundamentals", "content", "themes", "plugins", "api", "performance"]);
 
 export const categories = pgTable("categories", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),

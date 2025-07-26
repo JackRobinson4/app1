@@ -12,13 +12,43 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 
+interface DashboardData {
+  categories: Array<{
+    id: string;
+    name: string;
+    slug: string;
+  }>;
+  lessons: Array<{
+    id: string;
+    title: string;
+    description: string;
+    slug: string;
+    duration?: number;
+    type: 'free' | 'premium';
+    order: number;
+    categoryId: string;
+  }>;
+  progress: Array<{
+    lessonId: string;
+    status: 'not_started' | 'in_progress' | 'completed';
+    progressPercentage: number;
+  }>;
+  stats: {
+    overallProgress: number;
+    completedLessons: number;
+    totalLessons: number;
+    streak: number;
+    certificates: number;
+  };
+}
+
 export default function Dashboard() {
   const { toast } = useToast();
   const { isAuthenticated, isLoading, user } = useAuth();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [isPracticeModalOpen, setIsPracticeModalOpen] = useState(false);
 
-  const { data: dashboardData, isLoading: isDashboardLoading } = useQuery({
+  const { data: dashboardData, isLoading: isDashboardLoading } = useQuery<DashboardData>({
     queryKey: ["/api/dashboard"],
     enabled: isAuthenticated,
   });
@@ -68,7 +98,7 @@ export default function Dashboard() {
         return category?.slug === selectedCategory;
       });
 
-  const userName = user?.firstName || user?.email?.split('@')[0] || 'Student';
+  const userName = (user as any)?.firstName || (user as any)?.email?.split('@')[0] || 'Student';
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -99,9 +129,9 @@ export default function Dashboard() {
               <div className="flex items-center space-x-2">
                 <span className="text-sm font-medium text-gray-700">{userName}</span>
                 <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden">
-                  {user?.profileImageUrl ? (
+                  {(user as any)?.profileImageUrl ? (
                     <img 
-                      src={user.profileImageUrl} 
+                      src={(user as any).profileImageUrl} 
                       alt="User Profile" 
                       className="w-full h-full object-cover"
                     />
@@ -135,12 +165,15 @@ export default function Dashboard() {
         {/* Lesson Categories */}
         <div className="mb-8">
           <Tabs value={selectedCategory} onValueChange={setSelectedCategory}>
-            <TabsList className="grid w-full grid-cols-5">
-              <TabsTrigger value="all">All Lessons</TabsTrigger>
+            <TabsList className="grid w-full grid-cols-4 lg:grid-cols-8">
+              <TabsTrigger value="all">All</TabsTrigger>
+              <TabsTrigger value="hosting">Hosting</TabsTrigger>
               <TabsTrigger value="fundamentals">Fundamentals</TabsTrigger>
-              <TabsTrigger value="themes">Themes & Customization</TabsTrigger>
-              <TabsTrigger value="plugins">Plugins & Code</TabsTrigger>
-              <TabsTrigger value="hosting">Hosting & Deployment</TabsTrigger>
+              <TabsTrigger value="content">Content</TabsTrigger>
+              <TabsTrigger value="themes">Themes</TabsTrigger>
+              <TabsTrigger value="plugins">Plugins</TabsTrigger>
+              <TabsTrigger value="api">API</TabsTrigger>
+              <TabsTrigger value="performance">Performance</TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
@@ -186,7 +219,7 @@ export default function Dashboard() {
                       key={lesson.id}
                       lesson={lesson}
                       progress={lessonProgress}
-                      userAccessLevel={user?.accessLevel || 'free'}
+                      userAccessLevel={(user as any)?.accessLevel || 'free'}
                     />
                   );
                 })}

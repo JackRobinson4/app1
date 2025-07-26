@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 import { insertUserProgressSchema, insertLessonSchema, insertCategorySchema } from "@shared/schema";
+import { seedDatabase } from "./seed-data";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -146,6 +147,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching achievements:", error);
       res.status(500).json({ message: "Failed to fetch achievements" });
+    }
+  });
+
+  // Seed database route (for development)
+  app.post('/api/seed', async (req, res) => {
+    try {
+      await seedDatabase();
+      res.json({ message: "Database seeded successfully" });
+    } catch (error) {
+      console.error("Error seeding database:", error);
+      res.status(500).json({ message: "Failed to seed database" });
     }
   });
 

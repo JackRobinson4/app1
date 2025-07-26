@@ -38,6 +38,20 @@ app.use((req, res, next) => {
 
 (async () => {
   const server = await registerRoutes(app);
+  
+  // Seed database on startup if empty
+  try {
+    const { storage } = await import("./storage");
+    const { seedDatabase } = await import("./seed-data");
+    const categories = await storage.getCategories();
+    if (categories.length === 0) {
+      log("Database is empty, seeding with comprehensive lesson data...");
+      await seedDatabase();
+      log("Database seeded successfully!");
+    }
+  } catch (error) {
+    console.error("Error checking/seeding database:", error);
+  }
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;

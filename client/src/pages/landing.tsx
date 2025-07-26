@@ -108,37 +108,68 @@ export default function Landing() {
             What You'll Learn
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
               <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <i className="fas fa-foundation text-blue-600"></i>
+                <i className="fas fa-server text-blue-600"></i>
               </div>
-              <h3 className="font-semibold mb-2">WordPress Fundamentals</h3>
-              <p className="text-sm text-gray-600">Installation, setup, and basic navigation</p>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-              <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                <i className="fas fa-palette text-purple-600"></i>
-              </div>
-              <h3 className="font-semibold mb-2">Themes & Customization</h3>
-              <p className="text-sm text-gray-600">Design beautiful sites with themes and customizer</p>
+              <h3 className="font-semibold mb-2">Hosting & Installation</h3>
+              <p className="text-sm text-gray-600">Choose hosting, set up domains, and install WordPress</p>
+              <div className="text-xs text-blue-600 mt-2">4 lessons</div>
             </div>
 
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
               <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                <i className="fas fa-plug text-green-600"></i>
+                <i className="fas fa-graduation-cap text-green-600"></i>
               </div>
-              <h3 className="font-semibold mb-2">Plugins & Code</h3>
-              <p className="text-sm text-gray-600">Extend functionality with plugins and custom code</p>
+              <h3 className="font-semibold mb-2">WordPress Fundamentals</h3>
+              <p className="text-sm text-gray-600">Master dashboard, security, themes, and plugins</p>
+              <div className="text-xs text-green-600 mt-2">4 lessons</div>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                <i className="fas fa-cubes text-purple-600"></i>
+              </div>
+              <h3 className="font-semibold mb-2">Content & Structure</h3>
+              <p className="text-sm text-gray-600">Custom post types, fields, and user management</p>
+              <div className="text-xs text-purple-600 mt-2">4 lessons</div>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                <i className="fas fa-palette text-indigo-600"></i>
+              </div>
+              <h3 className="font-semibold mb-2">Theme Development</h3>
+              <p className="text-sm text-gray-600">Build custom themes from scratch</p>
+              <div className="text-xs text-indigo-600 mt-2">5 lessons</div>
             </div>
 
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
               <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mb-4">
-                <i className="fas fa-server text-orange-600"></i>
+                <i className="fas fa-plug text-orange-600"></i>
               </div>
-              <h3 className="font-semibold mb-2">Hosting & Deployment</h3>
-              <p className="text-sm text-gray-600">Launch your site with proper hosting and domains</p>
+              <h3 className="font-semibold mb-2">Plugin Development</h3>
+              <p className="text-sm text-gray-600">Create powerful WordPress plugins</p>
+              <div className="text-xs text-orange-600 mt-2">5 lessons</div>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <div className="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
+                <i className="fas fa-code text-cyan-600"></i>
+              </div>
+              <h3 className="font-semibold mb-2">API & Headless</h3>
+              <p className="text-sm text-gray-600">REST API and modern development</p>
+              <div className="text-xs text-cyan-600 mt-2">4 lessons</div>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
+              <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                <i className="fas fa-rocket text-red-600"></i>
+              </div>
+              <h3 className="font-semibold mb-2">Performance & SEO</h3>
+              <p className="text-sm text-gray-600">Optimize and deploy professional sites</p>
+              <div className="text-xs text-red-600 mt-2">2 lessons</div>
             </div>
           </div>
         </div>

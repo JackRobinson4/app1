@@ -6,15 +6,31 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 
+interface Lesson {
+  id: string;
+  title: string;
+  description: string;
+  content?: string;
+  videoUrl?: string;
+  duration?: number;
+  type: 'free' | 'premium';
+  practiceExercise?: string;
+  resources?: string;
+}
+
+interface Progress {
+  progressPercentage: number;
+}
+
 export default function LessonPage() {
   const { slug } = useParams();
   const { user } = useAuth();
 
-  const { data: lesson, isLoading } = useQuery({
+  const { data: lesson, isLoading } = useQuery<Lesson>({
     queryKey: ["/api/lessons/slug", slug],
   });
 
-  const { data: progress } = useQuery({
+  const { data: progress } = useQuery<Progress>({
     queryKey: ["/api/progress", lesson?.id],
     enabled: !!lesson?.id,
   });
@@ -46,7 +62,7 @@ export default function LessonPage() {
     );
   }
 
-  const isLocked = lesson.type === 'premium' && user?.accessLevel !== 'premium';
+  const isLocked = lesson.type === 'premium' && (user as any)?.accessLevel !== 'premium';
   const progressPercentage = progress?.progressPercentage || 0;
 
   return (

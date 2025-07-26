@@ -36,25 +36,46 @@ export default function LessonSidebar({ categories, lessons, progress }: LessonS
 
   const getCategoryData = () => [
     {
+      name: "Hosting & Installation",
+      ...getCategoryProgress(categories.find(c => c.slug === 'hosting')?.id || ''),
+      color: "bg-primary",
+      locked: false
+    },
+    {
       name: "WordPress Fundamentals",
       ...getCategoryProgress(categories.find(c => c.slug === 'fundamentals')?.id || ''),
-      color: "bg-secondary"
+      color: "bg-secondary",
+      locked: false
     },
     {
-      name: "Theme Customization", 
+      name: "Content & Structure", 
+      ...getCategoryProgress(categories.find(c => c.slug === 'content')?.id || ''),
+      color: "bg-purple-500",
+      locked: false
+    },
+    {
+      name: "Theme Development",
       ...getCategoryProgress(categories.find(c => c.slug === 'themes')?.id || ''),
-      color: "bg-secondary"
+      color: "bg-green-500",
+      locked: false
     },
     {
-      name: "Plugins & Development",
+      name: "Plugin Development",
       ...getCategoryProgress(categories.find(c => c.slug === 'plugins')?.id || ''),
-      color: "bg-gray-400"
+      color: "bg-blue-500",
+      locked: false
     },
     {
-      name: "Hosting & Deployment",
-      ...getCategoryProgress(categories.find(c => c.slug === 'hosting')?.id || ''),
-      color: "bg-gray-300",
-      locked: true
+      name: "API & Headless",
+      ...getCategoryProgress(categories.find(c => c.slug === 'api')?.id || ''),
+      color: "bg-orange-500",
+      locked: false
+    },
+    {
+      name: "Performance & SEO",
+      ...getCategoryProgress(categories.find(c => c.slug === 'performance')?.id || ''),
+      color: "bg-red-500",
+      locked: false
     }
   ];
 

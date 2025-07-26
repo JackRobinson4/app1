@@ -40,10 +40,17 @@ Preferred communication style: Simple, everyday language.
 - **User Management**: Automatic user creation/updates from OAuth claims
 
 ### Course Management
-- **Categories**: Organized learning paths (fundamentals, themes, plugins, hosting)
-- **Lessons**: Individual learning units with free/premium tiers
-- **Progress Tracking**: User completion status and progress percentages
-- **Achievement System**: Certificates and milestone tracking
+- **Categories**: 7 comprehensive learning paths:
+  1. Hosting & Installation (4 lessons) - Domain setup, hosting selection, WordPress installation
+  2. WordPress Fundamentals (4 lessons) - Dashboard mastery, security, themes, plugins
+  3. Content & Structure (4 lessons) - Custom post types, ACF, user roles, Gutenberg blocks
+  4. Theme Development (5 lessons) - Theme structure, template hierarchy, Loop, Customizer, FSE
+  5. Plugin Development (5 lessons) - Plugin basics, hooks, shortcodes, admin pages, AJAX
+  6. API & Headless WordPress (4 lessons) - REST API, custom endpoints, headless, Gutenberg blocks
+  7. Performance & SEO (2 lessons) - Optimization, migration, maintenance
+- **Lessons**: 28 comprehensive lessons with detailed content, practice exercises, and video placeholders
+- **Progress Tracking**: User completion status and progress percentages with visual indicators
+- **Achievement System**: Certificates and milestone tracking with gamification elements
 
 ### Content Delivery
 - **Lesson Types**: Free and premium content with access control
