@@ -59,6 +59,19 @@ Preferred communication style: Simple, everyday language.
 - **Progress Visualization**: Charts, progress bars, and completion indicators
 - **Responsive Design**: Mobile-first approach with adaptive layouts
 
+### Practice Environment (Enhanced)
+- **Lesson-Specific Exercises**: Each lesson has custom practice tasks tailored to the topic
+- **Interactive Practice Modal**: Full-featured practice environment with:
+  - **Tasks Tab**: Track completion of lesson-specific practice tasks with progress indicators
+  - **Dashboard Tab**: Simulated WordPress admin dashboard for hands-on practice
+  - **Code Editor Tab**: Multi-language code editors (HTML/Template, CSS, PHP) with syntax highlighting
+  - **Preview Tab**: Live preview of code changes in real-time
+  - **Notes Tab**: Built-in note-taking for documenting learning insights
+  - **Resources Tab**: Quick access to WordPress documentation and reference materials
+- **Progress Tracking**: Visual progress bar showing completed vs. total tasks
+- **Task Completion**: Interactive checkbox system with toast notifications
+- **Flexible Integration**: Works both from individual lessons and general practice mode from dashboard
+
 ## Data Flow
 
 ### User Authentication Flow
