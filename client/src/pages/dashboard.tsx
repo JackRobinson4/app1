@@ -116,10 +116,42 @@ export default function Dashboard() {
             </div>
             
             <nav className="hidden md:flex items-center space-x-6">
-              <a href="#" className="text-primary font-medium">Dashboard</a>
-              <a href="#" className="text-gray-700 hover:text-primary font-medium">Lessons</a>
-              <a href="#" className="text-gray-700 hover:text-primary font-medium">Practice</a>
-              <a href="#" className="text-gray-700 hover:text-primary font-medium">Community</a>
+              <button 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="text-primary font-medium"
+                data-testid="nav-dashboard"
+              >
+                Dashboard
+              </button>
+              <button 
+                onClick={() => {
+                  setSelectedCategory("all");
+                  const lessonsSection = document.getElementById('lessons-section');
+                  if (lessonsSection) {
+                    lessonsSection.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="text-gray-700 hover:text-primary font-medium"
+                data-testid="nav-lessons"
+              >
+                Lessons
+              </button>
+              <button 
+                onClick={() => setIsPracticeModalOpen(true)}
+                className="text-gray-700 hover:text-primary font-medium"
+                data-testid="nav-practice"
+              >
+                Practice
+              </button>
+              <button 
+                onClick={() => {
+                  window.open('https://wordpress.org/support/forums/', '_blank');
+                }}
+                className="text-gray-700 hover:text-primary font-medium"
+                data-testid="nav-community"
+              >
+                Community
+              </button>
             </nav>
 
             <div className="flex items-center space-x-4">
@@ -212,7 +244,7 @@ export default function Dashboard() {
               )}
 
               {/* Lesson Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div id="lessons-section" className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredLessons.map((lesson: any) => {
                   const lessonProgress = progress.find((p: any) => p.lessonId === lesson.id);
                   return (
