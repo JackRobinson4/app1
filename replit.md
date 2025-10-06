@@ -61,13 +61,16 @@ Preferred communication style: Simple, everyday language.
 
 ### Practice Environment (Enhanced)
 - **Lesson-Specific Exercises**: Each lesson has custom practice tasks tailored to the topic
+- **Dynamic Editor Display**: Each lesson shows only the code editors (HTML, CSS, PHP) it needs via the `practice_editors` field
 - **Interactive Practice Modal**: Full-featured practice environment with:
   - **Tasks Tab**: Track completion of lesson-specific practice tasks with progress indicators
   - **Dashboard Tab**: Simulated WordPress admin dashboard for hands-on practice
-  - **Code Editor Tab**: Multi-language code editors (HTML/Template, CSS, PHP) with syntax highlighting
+  - **Dynamic Code Editor Tabs**: HTML, CSS, and PHP editors appear as separate top-level tabs only when needed for that lesson
   - **Preview Tab**: Live preview of code changes in real-time
   - **Notes Tab**: Built-in note-taking for documenting learning insights
   - **Resources Tab**: Quick access to WordPress documentation and reference materials
+- **Adaptive Tab Layout**: Grid layout automatically adjusts (5-8 columns) based on number of active editors using Tailwind's static classes
+- **Smart Navigation**: Dashboard cards route to first available editor (CSS → HTML → PHP priority)
 - **Progress Tracking**: Visual progress bar showing completed vs. total tasks
 - **Task Completion**: Interactive checkbox system with toast notifications
 - **Flexible Integration**: Works both from individual lessons and general practice mode from dashboard
