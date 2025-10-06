@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useState } from "react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import PracticeModal from "@/components/practice-modal";
 
 interface Lesson {
   id: string;
@@ -320,40 +320,14 @@ export default function LessonPage() {
         )}
       </div>
 
-      <Dialog open={practiceModalOpen} onOpenChange={setPracticeModalOpen}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-2xl">
-              <i className="fas fa-code text-blue-600 mr-2"></i>
-              {practiceExercise?.title}
-            </DialogTitle>
-            <DialogDescription>
-              {practiceExercise?.description}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="py-4">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <p className="font-semibold text-gray-900 mb-3">Complete these tasks:</p>
-              <ul className="space-y-2">
-                {practiceExercise?.tasks.map((task, idx) => (
-                  <li key={idx} className="flex items-start text-gray-700">
-                    <span className="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-medium mr-3 mt-0.5">
-                      {idx + 1}
-                    </span>
-                    <span>{task}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-              <p className="text-sm text-gray-600">
-                <i className="fas fa-lightbulb text-yellow-500 mr-2"></i>
-                <strong>Tip:</strong> Practice in your local WordPress installation or use a development environment to complete these exercises.
-              </p>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
+      {practiceExercise && (
+        <PracticeModal
+          isOpen={practiceModalOpen}
+          onClose={() => setPracticeModalOpen(false)}
+          exercise={practiceExercise}
+          lessonTitle={lesson.title}
+        />
+      )}
     </div>
   );
 }
