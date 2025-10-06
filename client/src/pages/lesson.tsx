@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useState } from "react";
 import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -327,9 +327,11 @@ export default function LessonPage() {
               <i className="fas fa-code text-blue-600 mr-2"></i>
               {practiceExercise?.title}
             </DialogTitle>
+            <DialogDescription>
+              {practiceExercise?.description}
+            </DialogDescription>
           </DialogHeader>
           <div className="py-4">
-            <p className="text-gray-600 mb-4">{practiceExercise?.description}</p>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <p className="font-semibold text-gray-900 mb-3">Complete these tasks:</p>
               <ul className="space-y-2">
