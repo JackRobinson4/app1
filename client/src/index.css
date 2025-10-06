@@ -65,42 +65,42 @@
 
 @layer utilities {
   .text-primary {
-    color: hsl(var(--primary));
+    color: var(--primary);
   }
   
   .text-secondary {
-    color: hsl(var(--secondary));
+    color: var(--secondary);
   }
   
   .text-accent {
-    color: hsl(var(--accent));
+    color: var(--accent);
   }
   
   .bg-primary {
-    background-color: hsl(var(--primary));
+    background-color: var(--primary);
   }
   
   .bg-secondary {
-    background-color: hsl(var(--secondary));
+    background-color: var(--secondary);
   }
   
   .bg-accent {
-    background-color: hsl(var(--accent));
+    background-color: var(--accent);
   }
   
   .bg-wp-blue {
-    background-color: hsl(var(--wp-blue));
+    background-color: var(--wp-blue);
   }
   
   .border-primary {
-    border-color: hsl(var(--primary));
+    border-color: var(--primary);
   }
   
   .hover\:bg-primary:hover {
-    background-color: hsl(var(--primary));
+    background-color: var(--primary);
   }
   
   .hover\:text-primary:hover {
-    color: hsl(var(--primary));
+    color: var(--primary);
   }
 }
