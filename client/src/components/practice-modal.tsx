@@ -145,13 +145,12 @@ add_action('after_setup_theme', 'custom_theme_setup');
 
   const progressPercentage = (completedTasks.size / exercise.tasks.length) * 100;
   
-  const totalTabs = 5 + editors.length;
+  const totalTabs = 2 + editors.length;
   const gridColsClass = {
+    3: 'grid-cols-3',
+    4: 'grid-cols-4',
     5: 'grid-cols-5',
-    6: 'grid-cols-6',
-    7: 'grid-cols-7',
-    8: 'grid-cols-8',
-  }[totalTabs] || 'grid-cols-6';
+  }[totalTabs] || 'grid-cols-4';
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -207,18 +206,6 @@ add_action('after_setup_theme', 'custom_theme_setup');
                 PHP
               </TabsTrigger>
             )}
-            <TabsTrigger value="preview" data-testid="practice-tab-preview">
-              <i className="fas fa-eye mr-2"></i>
-              Preview
-            </TabsTrigger>
-            <TabsTrigger value="notes" data-testid="practice-tab-notes">
-              <i className="fas fa-sticky-note mr-2"></i>
-              Notes
-            </TabsTrigger>
-            <TabsTrigger value="resources" data-testid="practice-tab-resources">
-              <i className="fas fa-book mr-2"></i>
-              Resources
-            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="instructions" className="h-[500px] overflow-auto">
@@ -287,15 +274,15 @@ add_action('after_setup_theme', 'custom_theme_setup');
                   <ul className="space-y-2 text-sm text-gray-700">
                     <li className="flex items-start">
                       <i className="fas fa-check-circle text-green-600 mr-2 mt-0.5"></i>
-                      <span>Use the Code Editor tab to practice writing WordPress code</span>
+                      <span>Use the Code Editor tabs to practice writing WordPress code</span>
                     </li>
                     <li className="flex items-start">
                       <i className="fas fa-check-circle text-green-600 mr-2 mt-0.5"></i>
-                      <span>Test your changes in the Preview tab to see them in action</span>
+                      <span>Click the Preview button beside each editor to see your changes in real-time</span>
                     </li>
                     <li className="flex items-start">
                       <i className="fas fa-check-circle text-green-600 mr-2 mt-0.5"></i>
-                      <span>Take notes in the Notes tab to remember what you learned</span>
+                      <span>Experiment with HTML, CSS, and PHP to build WordPress skills</span>
                     </li>
                     <li className="flex items-start">
                       <i className="fas fa-check-circle text-green-600 mr-2 mt-0.5"></i>
@@ -422,37 +409,38 @@ add_action('after_setup_theme', 'custom_theme_setup');
             )}
           </TabsContent>
 
-          <TabsContent value="html" className="h-[500px]">
-            <div className="space-y-4 h-full flex flex-col">
-              <div className="bg-gray-900 rounded-lg overflow-hidden flex-1">
-                <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
-                  <span className="text-gray-300 text-sm font-mono">template.html</span>
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <TabsContent value="html" className="h-[500px] overflow-auto">
+            <div className="grid grid-cols-2 gap-4 h-full">
+              <div className="flex flex-col space-y-2">
+                <div className="bg-gray-900 rounded-lg overflow-hidden flex-1">
+                  <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
+                    <span className="text-gray-300 text-sm font-mono">template.html</span>
+                    <div className="flex space-x-2">
+                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
                   </div>
+                  <textarea
+                    value={htmlCode}
+                    onChange={(e) => setHtmlCode(e.target.value)}
+                    className="w-full h-[calc(100%-40px)] bg-gray-900 text-blue-400 font-mono text-sm p-4 resize-none outline-none"
+                    placeholder="Enter your HTML/WordPress template code here..."
+                    data-testid="html-editor"
+                  />
                 </div>
-                <textarea
-                  value={htmlCode}
-                  onChange={(e) => setHtmlCode(e.target.value)}
-                  className="w-full h-[calc(100%-40px)] bg-gray-900 text-blue-400 font-mono text-sm p-4 resize-none outline-none"
-                  placeholder="Enter your HTML/WordPress template code here..."
-                  data-testid="html-editor"
-                />
-              </div>
-              <div className="flex gap-2">
-                <Button 
-                  onClick={applyCode}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700"
-                  data-testid="button-apply-html"
-                >
-                  <i className="fas fa-play mr-2"></i>
-                  Apply & Preview
-                </Button>
-                <Button 
-                  variant="outline"
-                  onClick={() => setHtmlCode(`<!-- WordPress Template Practice -->
+                <div className="flex gap-2">
+                  <Button 
+                    onClick={applyCode}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700"
+                    data-testid="button-preview-html"
+                  >
+                    <i className="fas fa-eye mr-2"></i>
+                    Preview
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    onClick={() => setHtmlCode(`<!-- WordPress Template Practice -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -474,46 +462,68 @@ add_action('after_setup_theme', 'custom_theme_setup');
     </main>
 </body>
 </html>`)}
-                  data-testid="button-reset-html"
-                >
-                  <i className="fas fa-undo mr-2"></i>
-                  Reset
-                </Button>
+                    data-testid="button-reset-html"
+                  >
+                    <i className="fas fa-undo mr-2"></i>
+                    Reset
+                  </Button>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="bg-white border-2 border-gray-300 rounded-lg overflow-hidden flex-1">
+                  <div className="bg-gray-100 px-4 py-2 border-b border-gray-300 flex items-center">
+                    <i className="fas fa-eye text-gray-600 mr-2"></i>
+                    <span className="text-gray-700 text-sm font-medium">Live Preview</span>
+                  </div>
+                  <div className="p-4 h-[calc(100%-40px)] overflow-auto">
+                    {previewHtml ? (
+                      <div dangerouslySetInnerHTML={{ __html: previewHtml }} />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-gray-400">
+                        <div className="text-center">
+                          <i className="fas fa-eye-slash text-4xl mb-2"></i>
+                          <p>Click Preview to see your code</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </TabsContent>
 
-          <TabsContent value="css" className="h-[500px]">
-            <div className="space-y-4 h-full flex flex-col">
-              <div className="bg-gray-900 rounded-lg overflow-hidden flex-1">
-                <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
-                  <span className="text-gray-300 text-sm font-mono">style.css</span>
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <TabsContent value="css" className="h-[500px] overflow-auto">
+            <div className="grid grid-cols-2 gap-4 h-full">
+              <div className="flex flex-col space-y-2">
+                <div className="bg-gray-900 rounded-lg overflow-hidden flex-1">
+                  <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
+                    <span className="text-gray-300 text-sm font-mono">style.css</span>
+                    <div className="flex space-x-2">
+                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
                   </div>
+                  <textarea
+                    value={cssCode}
+                    onChange={(e) => setCssCode(e.target.value)}
+                    className="w-full h-[calc(100%-40px)] bg-gray-900 text-green-400 font-mono text-sm p-4 resize-none outline-none"
+                    placeholder="Enter your CSS code here..."
+                    data-testid="css-editor"
+                  />
                 </div>
-                <textarea
-                  value={cssCode}
-                  onChange={(e) => setCssCode(e.target.value)}
-                  className="w-full h-[calc(100%-40px)] bg-gray-900 text-green-400 font-mono text-sm p-4 resize-none outline-none"
-                  placeholder="Enter your CSS code here..."
-                  data-testid="css-editor"
-                />
-              </div>
-              <div className="flex gap-2">
-                <Button 
-                  onClick={applyCode}
-                  className="flex-1 bg-blue-600 hover:bg-blue-700"
-                  data-testid="button-apply-css"
-                >
-                  <i className="fas fa-play mr-2"></i>
-                  Apply & Preview
-                </Button>
-                <Button 
-                  variant="outline"
-                  onClick={() => setCssCode(`/* WordPress Custom CSS */
+                <div className="flex gap-2">
+                  <Button 
+                    onClick={applyCode}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700"
+                    data-testid="button-preview-css"
+                  >
+                    <i className="fas fa-eye mr-2"></i>
+                    Preview
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    onClick={() => setCssCode(`/* WordPress Custom CSS */
 .site-header {
   background-color: #6366F1;
   padding: 20px;
@@ -528,46 +538,68 @@ add_action('after_setup_theme', 'custom_theme_setup');
 .main-navigation a:hover {
   opacity: 0.8;
 }`)}
-                  data-testid="button-reset-css"
-                >
-                  <i className="fas fa-undo mr-2"></i>
-                  Reset
-                </Button>
+                    data-testid="button-reset-css"
+                  >
+                    <i className="fas fa-undo mr-2"></i>
+                    Reset
+                  </Button>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="bg-white border-2 border-gray-300 rounded-lg overflow-hidden flex-1">
+                  <div className="bg-gray-100 px-4 py-2 border-b border-gray-300 flex items-center">
+                    <i className="fas fa-eye text-gray-600 mr-2"></i>
+                    <span className="text-gray-700 text-sm font-medium">Live Preview</span>
+                  </div>
+                  <div className="p-4 h-[calc(100%-40px)] overflow-auto">
+                    {previewHtml ? (
+                      <div dangerouslySetInnerHTML={{ __html: previewHtml }} />
+                    ) : (
+                      <div className="flex items-center justify-center h-full text-gray-400">
+                        <div className="text-center">
+                          <i className="fas fa-eye-slash text-4xl mb-2"></i>
+                          <p>Click Preview to see your code</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </TabsContent>
 
-          <TabsContent value="php" className="h-[500px]">
-            <div className="space-y-4 h-full flex flex-col">
-              <div className="bg-gray-900 rounded-lg overflow-hidden flex-1">
-                <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
-                  <span className="text-gray-300 text-sm font-mono">functions.php</span>
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <TabsContent value="php" className="h-[500px] overflow-auto">
+            <div className="grid grid-cols-2 gap-4 h-full">
+              <div className="flex flex-col space-y-2">
+                <div className="bg-gray-900 rounded-lg overflow-hidden flex-1">
+                  <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
+                    <span className="text-gray-300 text-sm font-mono">functions.php</span>
+                    <div className="flex space-x-2">
+                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
                   </div>
+                  <textarea
+                    value={phpCode}
+                    onChange={(e) => setPhpCode(e.target.value)}
+                    className="w-full h-[calc(100%-40px)] bg-gray-900 text-purple-400 font-mono text-sm p-4 resize-none outline-none"
+                    placeholder="Enter your PHP code here..."
+                    data-testid="php-editor"
+                  />
                 </div>
-                <textarea
-                  value={phpCode}
-                  onChange={(e) => setPhpCode(e.target.value)}
-                  className="w-full h-[calc(100%-40px)] bg-gray-900 text-purple-400 font-mono text-sm p-4 resize-none outline-none"
-                  placeholder="Enter your PHP code here..."
-                  data-testid="php-editor"
-                />
-              </div>
-              <div className="flex gap-2">
-                <Button 
-                  onClick={() => simulateWordPressAction("validated your PHP code")}
-                  className="flex-1 bg-purple-600 hover:bg-purple-700"
-                  data-testid="button-validate-php"
-                >
-                  <i className="fas fa-check mr-2"></i>
-                  Validate Code
-                </Button>
-                <Button 
-                  variant="outline"
-                  onClick={() => setPhpCode(`<?php
+                <div className="flex gap-2">
+                  <Button 
+                    onClick={() => simulateWordPressAction("validated your PHP code")}
+                    className="flex-1 bg-purple-600 hover:bg-purple-700"
+                    data-testid="button-preview-php"
+                  >
+                    <i className="fas fa-check mr-2"></i>
+                    Validate Code
+                  </Button>
+                  <Button 
+                    variant="outline"
+                    onClick={() => setPhpCode(`<?php
 /**
  * WordPress Practice - ${lessonTitle}
  */
@@ -586,155 +618,53 @@ function custom_theme_setup() {
 }
 add_action('after_setup_theme', 'custom_theme_setup');
 ?>`)}
-                  data-testid="button-reset-php"
-                >
-                  <i className="fas fa-undo mr-2"></i>
-                  Reset
-                </Button>
+                    data-testid="button-reset-php"
+                  >
+                    <i className="fas fa-undo mr-2"></i>
+                    Reset
+                  </Button>
+                </div>
               </div>
-            </div>
-          </TabsContent>
-
-          <TabsContent value="preview" className="h-[500px]">
-            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full">
-              <div className="bg-gray-100 px-4 py-2 border-b border-gray-300 flex items-center justify-between">
-                <span className="text-gray-700 text-sm font-medium">Live Preview</span>
-                <Button 
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => setPreviewHtml("")}
-                  data-testid="button-clear-preview"
-                >
-                  <i className="fas fa-redo mr-2"></i>
-                  Clear
-                </Button>
-              </div>
-              {previewHtml ? (
-                <iframe
-                  srcDoc={previewHtml}
-                  className="w-full h-[calc(100%-40px)] border-0"
-                  title="Code Preview"
-                />
-              ) : (
-                <div className="flex items-center justify-center h-[calc(100%-40px)] text-gray-400">
-                  <div className="text-center">
-                    <i className="fas fa-eye-slash text-4xl mb-3"></i>
-                    <p>Click "Apply & Preview" in the Code Editor to see your changes</p>
+              <div className="flex flex-col">
+                <div className="bg-purple-50 border-2 border-purple-300 rounded-lg overflow-hidden flex-1">
+                  <div className="bg-purple-100 px-4 py-2 border-b border-purple-300 flex items-center">
+                    <i className="fas fa-info-circle text-purple-600 mr-2"></i>
+                    <span className="text-purple-700 text-sm font-medium">PHP Code Info</span>
+                  </div>
+                  <div className="p-4 h-[calc(100%-40px)] overflow-auto">
+                    <div className="space-y-4 text-sm">
+                      <div>
+                        <h4 className="font-semibold text-purple-900 mb-2">About PHP in WordPress</h4>
+                        <p className="text-purple-800">PHP is server-side code that runs on the WordPress server. It cannot be previewed directly in the browser.</p>
+                      </div>
+                      <div className="bg-white rounded-lg p-3 border border-purple-200">
+                        <h5 className="font-medium text-purple-900 mb-2">
+                          <i className="fas fa-lightbulb text-yellow-500 mr-1"></i>
+                          Common PHP Functions
+                        </h5>
+                        <ul className="space-y-1 text-purple-700 text-xs">
+                          <li><code className="bg-purple-100 px-1 py-0.5 rounded">add_action()</code> - Hook into WordPress</li>
+                          <li><code className="bg-purple-100 px-1 py-0.5 rounded">add_filter()</code> - Modify data</li>
+                          <li><code className="bg-purple-100 px-1 py-0.5 rounded">register_nav_menus()</code> - Register menus</li>
+                          <li><code className="bg-purple-100 px-1 py-0.5 rounded">add_theme_support()</code> - Add features</li>
+                        </ul>
+                      </div>
+                      <div className="bg-white rounded-lg p-3 border border-purple-200">
+                        <h5 className="font-medium text-purple-900 mb-2">
+                          <i className="fas fa-shield-alt text-blue-500 mr-1"></i>
+                          Security Best Practices
+                        </h5>
+                        <ul className="space-y-1 text-purple-700 text-xs">
+                          <li>Always sanitize user input</li>
+                          <li>Use nonces for form validation</li>
+                          <li>Escape output data</li>
+                          <li>Follow WordPress coding standards</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              )}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="notes" className="h-[500px]">
-            <Card className="h-full">
-              <CardContent className="pt-6 h-full flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-gray-900">
-                    <i className="fas fa-sticky-note text-yellow-500 mr-2"></i>
-                    Practice Notes
-                  </h3>
-                  <span className="text-xs text-gray-500">Saved locally</span>
-                </div>
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  className="flex-1 w-full border border-gray-300 rounded-lg p-4 resize-none outline-none focus:border-blue-500"
-                  placeholder="Take notes about what you're learning in this practice session..."
-                  data-testid="notes-textarea"
-                />
-                <p className="text-xs text-gray-500 mt-2">
-                  <i className="fas fa-info-circle mr-1"></i>
-                  Your notes are stored in your browser. Make sure to copy important notes elsewhere.
-                </p>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="resources" className="h-[500px] overflow-auto">
-            <div className="space-y-4">
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold text-gray-900 mb-4">
-                    <i className="fas fa-book-open text-blue-600 mr-2"></i>
-                    Official Documentation
-                  </h3>
-                  <div className="space-y-2">
-                    <a 
-                      href="https://developer.wordpress.org/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h4 className="font-medium text-blue-900">WordPress Developer Resources</h4>
-                          <p className="text-sm text-blue-700">Official WordPress documentation</p>
-                        </div>
-                        <i className="fas fa-external-link-alt text-blue-600"></i>
-                      </div>
-                    </a>
-                    <a 
-                      href="https://codex.wordpress.org/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="block p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h4 className="font-medium text-blue-900">WordPress Codex</h4>
-                          <p className="text-sm text-blue-700">Comprehensive WordPress wiki</p>
-                        </div>
-                        <i className="fas fa-external-link-alt text-blue-600"></i>
-                      </div>
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold text-gray-900 mb-4">
-                    <i className="fas fa-link text-green-600 mr-2"></i>
-                    Quick Reference
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                    <div className="p-3 bg-gray-50 rounded-lg">
-                      <h4 className="font-medium text-gray-900 text-sm mb-1">Template Tags</h4>
-                      <p className="text-xs text-gray-600">the_title(), the_content(), get_header()</p>
-                    </div>
-                    <div className="p-3 bg-gray-50 rounded-lg">
-                      <h4 className="font-medium text-gray-900 text-sm mb-1">Hooks</h4>
-                      <p className="text-xs text-gray-600">add_action(), add_filter(), do_action()</p>
-                    </div>
-                    <div className="p-3 bg-gray-50 rounded-lg">
-                      <h4 className="font-medium text-gray-900 text-sm mb-1">Database</h4>
-                      <p className="text-xs text-gray-600">$wpdb, get_posts(), WP_Query()</p>
-                    </div>
-                    <div className="p-3 bg-gray-50 rounded-lg">
-                      <h4 className="font-medium text-gray-900 text-sm mb-1">Security</h4>
-                      <p className="text-xs text-gray-600">wp_nonce, sanitize_text_field()</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardContent className="pt-6">
-                  <h3 className="font-semibold text-gray-900 mb-4">
-                    <i className="fas fa-graduation-cap text-purple-600 mr-2"></i>
-                    Learning Resources for: {lessonTitle}
-                  </h3>
-                  <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                    <p className="text-sm text-purple-900 mb-2">
-                      Complete the practice tasks above to reinforce what you learned in this lesson.
-                    </p>
-                    <p className="text-sm text-purple-800">
-                      For additional help, refer to the official WordPress documentation and community forums.
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
