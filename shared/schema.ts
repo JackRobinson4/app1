@@ -62,6 +62,7 @@ export const lessons = pgTable("lessons", {
   categoryId: varchar("category_id").references(() => categories.id),
   type: lessonTypeEnum("type").default("free").notNull(),
   practiceExercise: text("practice_exercise"), // JSON string with exercise data
+  practiceEditors: text("practice_editors"), // JSON array of editors to show: html, css, php
   resources: text("resources"), // JSON string with downloadable resources
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),

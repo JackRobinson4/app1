@@ -20,6 +20,7 @@ interface Lesson {
   duration?: number;
   type: 'free' | 'premium';
   practiceExercise?: string;
+  practiceEditors?: string;
   resources?: string;
   order: number;
   categoryId: string;
@@ -141,11 +142,21 @@ export default function LessonPage() {
   const nextLesson = currentIndex < categoryLessons.length - 1 ? categoryLessons[currentIndex + 1] : null;
 
   let practiceExercise: PracticeExercise | null = null;
+  let practiceEditors: ('html' | 'css' | 'php')[] = ['html', 'css', 'php'];
+  
   if (lesson.practiceExercise) {
     try {
       practiceExercise = JSON.parse(lesson.practiceExercise);
     } catch (e) {
       console.error("Failed to parse practice exercise:", e);
+    }
+  }
+  
+  if (lesson.practiceEditors) {
+    try {
+      practiceEditors = JSON.parse(lesson.practiceEditors);
+    } catch (e) {
+      console.error("Failed to parse practice editors:", e);
     }
   }
 
@@ -326,6 +337,7 @@ export default function LessonPage() {
           onClose={() => setPracticeModalOpen(false)}
           exercise={practiceExercise}
           lessonTitle={lesson.title}
+          editors={practiceEditors}
         />
       )}
     </div>

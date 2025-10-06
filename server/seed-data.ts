@@ -130,7 +130,8 @@ WordPress is the world's most popular content management system (CMS), powering 
             "Identify which platform suits a small business website",
             "Research WordPress market share statistics"
           ]
-        })
+        }),
+        practiceEditors: JSON.stringify(['html'])
       },
       {
         title: "Setting Up Local Development Environment",

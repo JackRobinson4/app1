@@ -16,6 +16,7 @@ interface PracticeModalProps {
   onClose: () => void;
   exercise?: PracticeExercise;
   lessonTitle?: string;
+  editors?: ('html' | 'css' | 'php')[];
 }
 
 const DEFAULT_EXERCISE: PracticeExercise = {
@@ -29,7 +30,13 @@ const DEFAULT_EXERCISE: PracticeExercise = {
   ]
 };
 
-export default function PracticeModal({ isOpen, onClose, exercise = DEFAULT_EXERCISE, lessonTitle = "General Practice" }: PracticeModalProps) {
+export default function PracticeModal({ 
+  isOpen, 
+  onClose, 
+  exercise = DEFAULT_EXERCISE, 
+  lessonTitle = "General Practice",
+  editors = ['html', 'css', 'php']
+}: PracticeModalProps) {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("instructions");
   const [completedTasks, setCompletedTasks] = useState<Set<number>>(new Set());
@@ -137,6 +144,14 @@ add_action('after_setup_theme', 'custom_theme_setup');
   };
 
   const progressPercentage = (completedTasks.size / exercise.tasks.length) * 100;
+  
+  const totalTabs = 5 + editors.length;
+  const gridColsClass = {
+    5: 'grid-cols-5',
+    6: 'grid-cols-6',
+    7: 'grid-cols-7',
+    8: 'grid-cols-8',
+  }[totalTabs] || 'grid-cols-6';
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -165,7 +180,7 @@ add_action('after_setup_theme', 'custom_theme_setup');
         </div>
         
         <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full">
-          <TabsList className="grid w-full grid-cols-6">
+          <TabsList className={`grid w-full ${gridColsClass}`}>
             <TabsTrigger value="instructions" data-testid="practice-tab-instructions">
               <i className="fas fa-list-check mr-2"></i>
               Tasks
@@ -174,10 +189,24 @@ add_action('after_setup_theme', 'custom_theme_setup');
               <i className="fas fa-tachometer-alt mr-2"></i>
               Dashboard
             </TabsTrigger>
-            <TabsTrigger value="code" data-testid="practice-tab-code">
-              <i className="fas fa-code mr-2"></i>
-              Code Editor
-            </TabsTrigger>
+            {editors.includes('html') && (
+              <TabsTrigger value="html" data-testid="practice-tab-html">
+                <i className="fas fa-code mr-2"></i>
+                HTML
+              </TabsTrigger>
+            )}
+            {editors.includes('css') && (
+              <TabsTrigger value="css" data-testid="practice-tab-css">
+                <i className="fas fa-paint-brush mr-2"></i>
+                CSS
+              </TabsTrigger>
+            )}
+            {editors.includes('php') && (
+              <TabsTrigger value="php" data-testid="practice-tab-php">
+                <i className="fas fa-code mr-2"></i>
+                PHP
+              </TabsTrigger>
+            )}
             <TabsTrigger value="preview" data-testid="practice-tab-preview">
               <i className="fas fa-eye mr-2"></i>
               Preview
@@ -322,7 +351,15 @@ add_action('after_setup_theme', 'custom_theme_setup');
                 </CardContent>
               </Card>
 
-              <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => setActiveTab("code")}>
+              <Card className="hover:shadow-lg transition-shadow cursor-pointer" onClick={() => {
+                if (editors.includes('css')) {
+                  setActiveTab('css');
+                } else if (editors.includes('html')) {
+                  setActiveTab('html');
+                } else if (editors.includes('php')) {
+                  setActiveTab('php');
+                }
+              }}>
                 <CardContent className="pt-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
@@ -385,94 +422,176 @@ add_action('after_setup_theme', 'custom_theme_setup');
             )}
           </TabsContent>
 
-          <TabsContent value="code" className="h-[500px] overflow-auto">
-            <Tabs defaultValue="html" className="h-full">
-              <TabsList className="mb-4">
-                <TabsTrigger value="html">HTML/Template</TabsTrigger>
-                <TabsTrigger value="css">CSS/Styles</TabsTrigger>
-                <TabsTrigger value="php">PHP/Functions</TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="html" className="h-[420px]">
-                <div className="bg-gray-900 rounded-lg overflow-hidden h-full">
-                  <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
-                    <span className="text-gray-300 text-sm font-mono">template.html</span>
-                    <div className="flex space-x-2">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    </div>
+          <TabsContent value="html" className="h-[500px]">
+            <div className="space-y-4 h-full flex flex-col">
+              <div className="bg-gray-900 rounded-lg overflow-hidden flex-1">
+                <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
+                  <span className="text-gray-300 text-sm font-mono">template.html</span>
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
-                  <textarea
-                    value={htmlCode}
-                    onChange={(e) => setHtmlCode(e.target.value)}
-                    className="w-full h-[calc(100%-40px)] bg-gray-900 text-blue-400 font-mono text-sm p-4 resize-none outline-none"
-                    placeholder="Enter your HTML/WordPress template code here..."
-                    data-testid="html-editor"
-                  />
                 </div>
-              </TabsContent>
+                <textarea
+                  value={htmlCode}
+                  onChange={(e) => setHtmlCode(e.target.value)}
+                  className="w-full h-[calc(100%-40px)] bg-gray-900 text-blue-400 font-mono text-sm p-4 resize-none outline-none"
+                  placeholder="Enter your HTML/WordPress template code here..."
+                  data-testid="html-editor"
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  onClick={applyCode}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700"
+                  data-testid="button-apply-html"
+                >
+                  <i className="fas fa-play mr-2"></i>
+                  Apply & Preview
+                </Button>
+                <Button 
+                  variant="outline"
+                  onClick={() => setHtmlCode(`<!-- WordPress Template Practice -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WordPress Practice</title>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="main-navigation">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <main class="site-content">
+        <h1>Welcome to WordPress</h1>
+        <p>Practice your WordPress development skills here.</p>
+    </main>
+</body>
+</html>`)}
+                  data-testid="button-reset-html"
+                >
+                  <i className="fas fa-undo mr-2"></i>
+                  Reset
+                </Button>
+              </div>
+            </div>
+          </TabsContent>
 
-              <TabsContent value="css" className="h-[420px]">
-                <div className="bg-gray-900 rounded-lg overflow-hidden h-full">
-                  <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
-                    <span className="text-gray-300 text-sm font-mono">style.css</span>
-                    <div className="flex space-x-2">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    </div>
+          <TabsContent value="css" className="h-[500px]">
+            <div className="space-y-4 h-full flex flex-col">
+              <div className="bg-gray-900 rounded-lg overflow-hidden flex-1">
+                <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
+                  <span className="text-gray-300 text-sm font-mono">style.css</span>
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
-                  <textarea
-                    value={cssCode}
-                    onChange={(e) => setCssCode(e.target.value)}
-                    className="w-full h-[calc(100%-40px)] bg-gray-900 text-green-400 font-mono text-sm p-4 resize-none outline-none"
-                    placeholder="Enter your CSS code here..."
-                    data-testid="css-editor"
-                  />
                 </div>
-              </TabsContent>
+                <textarea
+                  value={cssCode}
+                  onChange={(e) => setCssCode(e.target.value)}
+                  className="w-full h-[calc(100%-40px)] bg-gray-900 text-green-400 font-mono text-sm p-4 resize-none outline-none"
+                  placeholder="Enter your CSS code here..."
+                  data-testid="css-editor"
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  onClick={applyCode}
+                  className="flex-1 bg-blue-600 hover:bg-blue-700"
+                  data-testid="button-apply-css"
+                >
+                  <i className="fas fa-play mr-2"></i>
+                  Apply & Preview
+                </Button>
+                <Button 
+                  variant="outline"
+                  onClick={() => setCssCode(`/* WordPress Custom CSS */
+.site-header {
+  background-color: #6366F1;
+  padding: 20px;
+}
 
-              <TabsContent value="php" className="h-[420px]">
-                <div className="bg-gray-900 rounded-lg overflow-hidden h-full">
-                  <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
-                    <span className="text-gray-300 text-sm font-mono">functions.php</span>
-                    <div className="flex space-x-2">
-                      <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    </div>
+.main-navigation a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+}
+
+.main-navigation a:hover {
+  opacity: 0.8;
+}`)}
+                  data-testid="button-reset-css"
+                >
+                  <i className="fas fa-undo mr-2"></i>
+                  Reset
+                </Button>
+              </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="php" className="h-[500px]">
+            <div className="space-y-4 h-full flex flex-col">
+              <div className="bg-gray-900 rounded-lg overflow-hidden flex-1">
+                <div className="bg-gray-800 px-4 py-2 flex items-center justify-between">
+                  <span className="text-gray-300 text-sm font-mono">functions.php</span>
+                  <div className="flex space-x-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
-                  <textarea
-                    value={phpCode}
-                    onChange={(e) => setPhpCode(e.target.value)}
-                    className="w-full h-[calc(100%-40px)] bg-gray-900 text-purple-400 font-mono text-sm p-4 resize-none outline-none"
-                    placeholder="Enter your PHP code here..."
-                    data-testid="php-editor"
-                  />
                 </div>
-              </TabsContent>
-            </Tabs>
+                <textarea
+                  value={phpCode}
+                  onChange={(e) => setPhpCode(e.target.value)}
+                  className="w-full h-[calc(100%-40px)] bg-gray-900 text-purple-400 font-mono text-sm p-4 resize-none outline-none"
+                  placeholder="Enter your PHP code here..."
+                  data-testid="php-editor"
+                />
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  onClick={() => simulateWordPressAction("validated your PHP code")}
+                  className="flex-1 bg-purple-600 hover:bg-purple-700"
+                  data-testid="button-validate-php"
+                >
+                  <i className="fas fa-check mr-2"></i>
+                  Validate Code
+                </Button>
+                <Button 
+                  variant="outline"
+                  onClick={() => setPhpCode(`<?php
+/**
+ * WordPress Practice - ${lessonTitle}
+ */
 
-            <div className="flex gap-2 mt-4">
-              <Button 
-                onClick={applyCode}
-                className="flex-1 bg-blue-600 hover:bg-blue-700"
-                data-testid="button-apply-code"
-              >
-                <i className="fas fa-play mr-2"></i>
-                Apply & Preview
-              </Button>
-              <Button 
-                variant="outline"
-                onClick={() => {
-                  simulateWordPressAction("validated your code");
-                }}
-                data-testid="button-validate-code"
-              >
-                <i className="fas fa-check mr-2"></i>
-                Validate
-              </Button>
+// Add custom function to functions.php
+function custom_theme_setup() {
+    // Add theme support
+    add_theme_support('post-thumbnails');
+    add_theme_support('title-tag');
+    
+    // Register navigation menus
+    register_nav_menus(array(
+        'primary' => __('Primary Menu'),
+        'footer' => __('Footer Menu'),
+    ));
+}
+add_action('after_setup_theme', 'custom_theme_setup');
+?>`)}
+                  data-testid="button-reset-php"
+                >
+                  <i className="fas fa-undo mr-2"></i>
+                  Reset
+                </Button>
+              </div>
             </div>
           </TabsContent>
 
