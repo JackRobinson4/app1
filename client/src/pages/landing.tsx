@@ -117,7 +117,7 @@ export default function Landing() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
               <div className="w-10 h-10 bg-violet-100 rounded-lg flex items-center justify-center mb-4">
-                <i className="fas fa-play-circle text-violet-600"></i>
+                <i className="fas fa-book-open text-violet-600"></i>
               </div>
               <h3 className="font-semibold mb-2">WordPress Foundations</h3>
               <p className="text-sm text-gray-600">Learn basics, local setup, and essential concepts</p>
@@ -144,7 +144,7 @@ export default function Landing() {
 
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
               <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                <i className="fas fa-cubes text-purple-600"></i>
+                <i className="fas fa-sitemap text-purple-600"></i>
               </div>
               <h3 className="font-semibold mb-2">Content & Structure</h3>
               <p className="text-sm text-gray-600">Custom post types, fields, and user management</p>
@@ -171,7 +171,7 @@ export default function Landing() {
 
             <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
               <div className="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center mb-4">
-                <i className="fas fa-code text-cyan-600"></i>
+                <i className="fas fa-code-branch text-cyan-600"></i>
               </div>
               <h3 className="font-semibold mb-2">API & Headless</h3>
               <p className="text-sm text-gray-600">REST API and modern development</p>

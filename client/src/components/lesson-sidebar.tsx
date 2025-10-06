@@ -36,45 +36,59 @@ export default function LessonSidebar({ categories, lessons, progress }: LessonS
 
   const getCategoryData = () => [
     {
+      name: "WordPress Foundations",
+      ...getCategoryProgress(categories.find(c => c.slug === 'foundations')?.id || ''),
+      color: "bg-violet-500",
+      icon: "fa-book-open",
+      locked: false
+    },
+    {
       name: "Hosting & Installation",
       ...getCategoryProgress(categories.find(c => c.slug === 'hosting')?.id || ''),
-      color: "bg-primary",
+      color: "bg-blue-500",
+      icon: "fa-server",
       locked: false
     },
     {
       name: "WordPress Fundamentals",
       ...getCategoryProgress(categories.find(c => c.slug === 'fundamentals')?.id || ''),
-      color: "bg-secondary",
+      color: "bg-green-500",
+      icon: "fa-graduation-cap",
       locked: false
     },
     {
       name: "Content & Structure", 
       ...getCategoryProgress(categories.find(c => c.slug === 'content')?.id || ''),
       color: "bg-purple-500",
+      icon: "fa-sitemap",
       locked: false
     },
     {
       name: "Theme Development",
       ...getCategoryProgress(categories.find(c => c.slug === 'themes')?.id || ''),
-      color: "bg-green-500",
+      color: "bg-indigo-500",
+      icon: "fa-palette",
       locked: false
     },
     {
       name: "Plugin Development",
       ...getCategoryProgress(categories.find(c => c.slug === 'plugins')?.id || ''),
-      color: "bg-blue-500",
+      color: "bg-orange-500",
+      icon: "fa-plug",
       locked: false
     },
     {
       name: "API & Headless",
       ...getCategoryProgress(categories.find(c => c.slug === 'api')?.id || ''),
-      color: "bg-orange-500",
+      color: "bg-cyan-500",
+      icon: "fa-code-branch",
       locked: false
     },
     {
       name: "Performance & SEO",
       ...getCategoryProgress(categories.find(c => c.slug === 'performance')?.id || ''),
       color: "bg-red-500",
+      icon: "fa-rocket",
       locked: false
     }
   ];
